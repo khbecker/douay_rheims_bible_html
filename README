@@ -1,0 +1,20 @@
+Douay-Rheims Bible in HTML format
+
+This is an HTML format version of the Douay-Rheims Bible that can be easily installed on a web server for simple referencing of Bible verses.
+
+Future Tasks
+
+- run code tidying algorithm
+- cleanup HTML
+	- replace each <h2><a name="chapter">Book Chapter</a></h2>
+	with <div class="chaptertitle"><a name="chapter">Book Chapter</a></div>
+	- replace <ol> with <div class="booktext">
+	- replace </ol> with </div>
+	- replace each <li><span> with <a name="chapter_verse"><span class="versenumber">verse</span> <span class="versetext">
+	- replace </span></li> with </span>
+- clean up frames/menu
+- clean up fonts/colors
+- write documentation (link to demo)
+
+Contributors:
+Kevin Becker : khbecker@gmail.com
