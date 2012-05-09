@@ -4,16 +4,16 @@ This is an HTML format version of the Douay-Rheims Bible that can be easily inst
 
 Future Tasks
 
-- run code tidying algorithm
-- cleanup HTML
-	- replace each <h2><a name="chapter">Book Chapter</a></h2>
-	with <div class="chaptertitle"><a name="chapter">Book Chapter</a></div>
+- book level HTML cleanup
 	- replace <ol> with <div class="booktext">
 	- replace </ol> with </div>
+- switch frames to php interface, use http://hengrui-li.blogspot.com/2011/03/php-case-insensitive-fileexists.html for file lookup
+- make books accessible via PHP
+- clean up fonts/colors
+- verse level HTML cleanup
 	- replace each <li><span> with <a name="chapter_verse"><span class="versenumber">verse</span> <span class="versetext">
 	- replace </span></li> with </span>
-- clean up frames/menu
-- clean up fonts/colors
+- make verses accessible via PHP
 - write documentation (link to demo)
 
 Contributors:
