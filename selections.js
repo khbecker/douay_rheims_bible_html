@@ -1,8 +1,3 @@
-function getUrlVar(key){
-var result = new RegExp(key + "=([^&]*)", "i").exec(window.location.search);
-return result && unescape(result[1]) || "";
-}
-
 function init() {
     var chapter = getUrlVar("chapter");
     var verse = getUrlVar("verse");
