@@ -11,12 +11,8 @@
 "free bible downloads, bible, on-line, free bible software, free software,free downloads, bible downloads,bible software,html bible,internet bible,christian resources,free,onlinebible,Douay-Rheims, Catholic Bible,catholic" />
 <meta name="description" content=
 "The 1899 Douay-Rheims Catholic Bible" />
-<?php
-$url = "http://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
-$url_array = split("index", $url, 2);
-$url = $url_array[0];
-?>
 <base href="http://www.saintbenedicts.com/bible/"/>
+<link rel="shortcut icon" href="http://www.saintbenedicts.com/bible/bible.ico" />
 <script type="text/javascript">
 
 function load_page()
