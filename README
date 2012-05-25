@@ -4,7 +4,6 @@ This is an HTML format version of the Douay-Rheims Bible that can be easily inst
 
 Future Tasks
 
-- mod_rewrite support
 - clean up fonts/colors
 - write documentation (link to demo)
 
