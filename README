@@ -4,6 +4,7 @@ This is an HTML format version of the Douay-Rheims Bible that can be easily inst
 
 Future Tasks
 
+- find way to make base and favicon paths relative
 - clean up fonts/colors
 - write documentation (link to demo)
 
