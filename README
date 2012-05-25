@@ -4,16 +4,8 @@ This is an HTML format version of the Douay-Rheims Bible that can be easily inst
 
 Future Tasks
 
-- book level HTML cleanup
-	- replace <ol> with <div class="booktext">
-	- replace </ol> with </div>
-- switch frames to php interface, use http://hengrui-li.blogspot.com/2011/03/php-case-insensitive-fileexists.html for file lookup
-- make books accessible via PHP
+- mod_rewrite support
 - clean up fonts/colors
-- verse level HTML cleanup
-	- replace each <li><span> with <a name="chapter_verse"><span class="versenumber">verse</span> <span class="versetext">
-	- replace </span></li> with </span>
-- make verses accessible via PHP
 - write documentation (link to demo)
 
 Contributors:
