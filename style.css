@@ -3,3 +3,4 @@ body {
   }
   div.c1 {text-align: center}
   .chaptertitle{ font-size: large; font-weight: bold; }
+  .highlighted { background: yellow; }
