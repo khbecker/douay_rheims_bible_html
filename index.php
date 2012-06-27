@@ -9,8 +9,19 @@
 "free bible downloads, bible, on-line, free bible software, free software,free downloads, bible downloads,bible software,html bible,internet bible,christian resources,free,onlinebible,Douay-Rheims, Catholic Bible,catholic" />
 <meta name="description" content="The 1899 Douay-Rheims Catholic Bible" />
 <link rel="shortcut icon" href="http://www.saintbenedicts.com/bible/bible.ico" />
+<style type="text/css">
+/*<![CDATA[*/
+body {
+  background-image: url(sueback.jpg);
+  text-align: center;
+  }
+/*]]>*/
+</style>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+<!--[if lt IE 9]>
+<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
+<![endif]-->
 <script type="text/javascript">
-
 function load_page()
 {
     var page = "Douay-Rheims.htm"
@@ -37,12 +48,46 @@ function load_page()
     
     sbpages.location = page;
     //alert(page);
-}
+};
+    
+$(function(){
 
+    var iFrames = $('iframe');
+  
+    function iResize() {
+    
+        for (var i = 0, j = iFrames.length; i < j; i++) {
+          iFrames[i].style.height = iFrames[i].contentWindow.document.body.offsetHeight + 'px';
+        }
+    }
+        
+    if ($.browser.safari || $.browser.opera) { 
+    
+       iFrames.load(function(){
+           setTimeout(iResize, 0);
+       });
+    
+       for (var i = 0, j = iFrames.length; i < j; i++) {
+            var iSource = iFrames[i].src;
+            iFrames[i].src = '';
+            iFrames[i].src = iSource;
+       }
+       
+    } else {
+       iFrames.load(function() { 
+           var height = this.contentWindow.document.body.offsetHeight + 50;
+           this.style.height = height + 'px';
+       });
+    }
+
+});
 </script>
 </head>
-<frameset cols="202,*" onload="load_page()">
-<frame src="http://www.saintbenedicts.com/bible/menu.htm" />
-<frame name="sbpages" src="" id="sbpages" />
-</frameset>
+<body onload="load_page()">
+    <table align="center" width="1000px"><tr><td valign="top">
+    <iframe src="http://www.saintbenedicts.com/bible/menu.htm" class="iframe" scrolling="no" frameborder="0" width="198px"></iframe>
+    </td><td valign="top">
+    <iframe src="" class="iframe" scrolling="no" frameborder="0" id="sbpages" width="800px"></iframe>
+    </td></tr></table>
+</body>
 </html>
