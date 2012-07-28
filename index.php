@@ -83,11 +83,12 @@ $(function(){
 		{
 			if( typeof document.getElementById('sbpages').contentWindow.document.getElementsByClassName("chapter")[chapterindex] !== 'undefined' )
 			{
-				wait++;
 				//alert("not yet " + resized + " " + wait);
 				
 				if(resized == 1)
 				{
+					wait++;
+					
 					if(  wait > 4 )
 					{
 						document.getElementById('sbpages').contentWindow.document.getElementsByClassName("chapter")[chapterindex].scrollIntoView();
