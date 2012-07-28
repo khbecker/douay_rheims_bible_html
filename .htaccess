@@ -2,6 +2,6 @@ RewriteEngine On
 RewriteBase /bible/
 
 RewriteRule ^([1-4]?[a-zA-Z]+)/?$ index.php?book=$1
-RewriteRule ^([a-zA-Z]+)/([0-9]+)/?$ index.php?book=$1&chapter=$2
-RewriteRule ^([a-zA-Z]+)/([0-9]+)/([0-9]+(\-[0-9]+)*)/?$ index.php?book=$1&chapter=$2&verse=$3
-RewriteRule ^([a-zA-Z]+)/([0-9]+):([0-9]+(\-[0-9]+)*)/?$ index.php?book=$1&chapter=$2&verse=$3
+RewriteRule ^([1-4]?[a-zA-Z]+)/([0-9]+)/?$ index.php?book=$1&chapter=$2
+RewriteRule ^([1-4]?[a-zA-Z]+)/([0-9]+)/([0-9]+(\-[0-9]+)*)/?$ index.php?book=$1&chapter=$2&verse=$3
+RewriteRule ^([1-4]?[a-zA-Z]+)/([0-9]+):([0-9]+(\-[0-9]+)*)/?$ index.php?book=$1&chapter=$2&verse=$3
