@@ -12,7 +12,6 @@
 <style type="text/css">
 /*<![CDATA[*/
 body {
-  background-image: url(sueback.jpg);
   text-align: center;
   }
 /*]]>*/
@@ -24,14 +23,22 @@ body {
 <script type="text/javascript">
 function load_page()
 {
-    var page = "Douay-Rheims.htm"
+	// get arguments
+    var page = "http://" + document.domain + "/bible/" + "Douay-Rheims.htm"
     var book = "<?php echo $_GET["book"];?>";
     var chapter = "<?php echo $_GET["chapter"];?>";
     var verse = "<?php echo $_GET["verse"];?>";
+	
+	// Set background image
+	document.body.style.backgroundImage="url('http://" + document.domain + "/bible/" + "sueback.jpg')";
+	
+	// Set menu URL
+	document.getElementById('menu').src = "http://" + document.domain + "/bible/" + "menu.htm"
     
+	// Determine book URL
     if( book.length > 0 )
     {
-        page = "http://www.saintbenedicts.com/bible/" + book + ".htm";
+        page = "http://" + document.domain + "/bible/" + book + ".htm";
         
         if( chapter.length > 0 )
         {
@@ -46,13 +53,16 @@ function load_page()
         }
     }
     
-    sbpages.location = page;
-    //alert(page);
+	// Set book URL
+    document.getElementById('sbpages').src = page;
 };
     
 $(function(){
 
     var iFrames = $('iframe');
+	var interval = 0;
+	var resized = 0;
+	var wait = 0;
   
     function iResize() {
     
@@ -60,7 +70,36 @@ $(function(){
           iFrames[i].style.height = iFrames[i].contentWindow.document.body.offsetHeight + 'px';
         }
     }
+	
+	// Scroll to correct chapter
+	function scroll_page() {
+		var chapter = "<?php echo $_GET["chapter"];?>";
+		
+		// Get proper index for getElementsByClassName array
+		var chapterindex = chapter - 1;
+
+		// Scroll to chapter
+		if( chapterindex > 0 )
+		{
+			if( typeof document.getElementById('sbpages').contentWindow.document.getElementsByClassName("chapter")[chapterindex] !== 'undefined' )
+			{
+				wait++;
+				//alert("not yet " + resized + " " + wait);
+				
+				if(resized == 1)
+				{
+					if(  wait > 4 )
+					{
+						document.getElementById('sbpages').contentWindow.document.getElementsByClassName("chapter")[chapterindex].scrollIntoView();
+						clearInterval( interval );
+					}
+				}
+			}
+		}
+	}
         
+	interval = setInterval(scroll_page, 100);
+	
     if ($.browser.safari || $.browser.opera) { 
     
        iFrames.load(function(){
@@ -77,15 +116,15 @@ $(function(){
        iFrames.load(function() { 
            var height = this.contentWindow.document.body.offsetHeight + 50;
            this.style.height = height + 'px';
+		   resized = 1;
        });
     }
-
 });
 </script>
 </head>
 <body onload="load_page()">
     <table align="center" width="1000px"><tr><td valign="top">
-    <iframe src="http://www.saintbenedicts.com/bible/menu.htm" class="iframe" scrolling="no" frameborder="0" width="198px"></iframe>
+    <iframe src="" class="iframe" scrolling="no" frameborder="0" id="menu" width="198px"></iframe>
     </td><td valign="top">
     <iframe src="" class="iframe" scrolling="no" frameborder="0" id="sbpages" width="800px"></iframe>
     </td></tr></table>
