@@ -95,9 +95,18 @@ $(function(){
         return [x, y, x+w, y+h];
     }
 	
+	var chapter = 0;
+	var last_chapter = 0;
 	// Scroll to correct chapter
-	function scroll_page() {
-		var chapter = "<?php echo $_GET["chapter"];?>";
+	function scroll_page() 
+	{
+		last_chapter = chapter;
+		chapter = document.getElementById('sbpages').contentWindow.location.hash.substring(1);
+		
+		if( last_chapter !== chapter )
+		{
+			moved = 1;
+		}
 		
 		// Get proper index for getElementsByClassName array
 		var chapterindex = chapter - 1;
@@ -109,14 +118,14 @@ $(function(){
 			{
 				//alert("not yet " + resized + " " + wait);
 				
-				if(resized == 1)
+				if((resized == 1) && (moved == 1))
 				{
-					
+				
 					document.getElementById('sbpages').contentWindow.document.getElementsByClassName("chapter")[chapterindex].scrollIntoView();
 					
 					if( rectsIntersect(getPageRect(), getElementRect(document.getElementById('sbpages').contentWindow.document.getElementsByClassName("chapter")[chapterindex])))
 					{
-						clearInterval( interval );
+						moved = 0;
 					}
 				}
 			}
