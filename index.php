@@ -62,13 +62,37 @@ $(function(){
     var iFrames = $('iframe');
 	var interval = 0;
 	var resized = 0;
-	var wait = 0;
   
     function iResize() {
     
         for (var i = 0, j = iFrames.length; i < j; i++) {
           iFrames[i].style.height = iFrames[i].contentWindow.document.body.offsetHeight + 'px';
         }
+    }
+	
+	function rectsIntersect(a, b) {
+        return a[0]<b[2] && a[2]>b[0] && a[1]<b[3] && a[3]>b[1];
+    }
+	
+	function getPageRect() {
+        var isquirks= document.compatMode!=='BackCompat';
+        var page= isquirks? document.documentElement : document.body;
+        var x= page.scrollLeft;
+        var y= page.scrollTop;
+        var w= 'innerWidth' in window? window.innerWidth : page.clientWidth;
+        var h= 'innerHeight' in window? window.innerHeight : page.clientHeight;
+        return [x, y, x+w, y+h];
+    }
+
+    function getElementRect(element) {
+        var x= 0, y= 0;
+        var w= element.offsetWidth, h= element.offsetHeight;
+        while (element.offsetParent!==null) {
+            x+= element.offsetLeft;
+            y+= element.offsetTop;
+            element= element.offsetParent;
+        }
+        return [x, y, x+w, y+h];
     }
 	
 	// Scroll to correct chapter
@@ -87,11 +111,11 @@ $(function(){
 				
 				if(resized == 1)
 				{
-					wait++;
 					
-					if(  wait > 4 )
+					document.getElementById('sbpages').contentWindow.document.getElementsByClassName("chapter")[chapterindex].scrollIntoView();
+					
+					if( rectsIntersect(getPageRect(), getElementRect(document.getElementById('sbpages').contentWindow.document.getElementsByClassName("chapter")[chapterindex])))
 					{
-						document.getElementById('sbpages').contentWindow.document.getElementsByClassName("chapter")[chapterindex].scrollIntoView();
 						clearInterval( interval );
 					}
 				}
