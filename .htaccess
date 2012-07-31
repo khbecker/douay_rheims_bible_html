@@ -1,6 +1,9 @@
 RewriteEngine On
 RewriteBase /bible/
 
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+
 RewriteRule ^([1-4]?[a-zA-Z]+)/?$ index.php?book=$1
 RewriteRule ^([1-4]?[a-zA-Z]+)/([0-9]+)/?$ index.php?book=$1&chapter=$2
 RewriteRule ^([1-4]?[a-zA-Z]+)/([0-9]+)/([0-9]+(\-[0-9]+)*)/?$ index.php?book=$1&chapter=$2&verse=$3

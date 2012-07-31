@@ -8,16 +8,17 @@
 <meta name="keywords" content=
 "free bible downloads, bible, on-line, free bible software, free software,free downloads, bible downloads,bible software,html bible,internet bible,christian resources,free,onlinebible,Douay-Rheims, Catholic Bible,catholic" />
 <meta name="description" content="The 1899 Douay-Rheims Catholic Bible" />
-<link rel="shortcut icon" href="http://www.saintbenedicts.com/bible/bible.ico" />
+<link rel="shortcut icon" href="bible.ico" />
 <style type="text/css">
 /*<![CDATA[*/
 body {
   text-align: center;
+  background-image: url(/bible/sueback.jpg);
   }
 /*]]>*/
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
-<script type="text/javascript" src="http://www.saintbenedicts.com/bible/visibility.js"></script>
+<script type="text/javascript" src="/bible/visibility.js"></script>
 <!--[if lt IE 9]>
 <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
 <![endif]-->
@@ -25,21 +26,15 @@ body {
 function load_page()
 {
 	// get arguments
-    var page = "http://" + document.domain + "/bible/" + "Douay-Rheims.htm"
+    var page = "/bible/Douay-Rheims.htm"
     var book = "<?php echo $_GET["book"];?>";
     var chapter = "<?php echo $_GET["chapter"];?>";
     var verse = "<?php echo $_GET["verse"];?>";
-	
-	// Set background image
-	document.body.style.backgroundImage="url('http://" + document.domain + "/bible/" + "sueback.jpg')";
-	
-	// Set menu URL
-	document.getElementById('menu').src = "http://" + document.domain + "/bible/" + "menu.htm"
     
 	// Determine book URL
     if( book.length > 0 )
     {
-        page = "http://" + document.domain + "/bible/" + book + ".htm";
+        page = "/bible/" + book + ".htm";
         
         if( chapter.length > 0 )
         {
@@ -107,7 +102,7 @@ $(function(){
 </head>
 <body onload="load_page()">
     <table align="center" width="1000px"><tr><td valign="top">
-    <iframe src="" class="iframe" scrolling="no" frameborder="0" id="menu" width="198px"></iframe>
+    <iframe src="/bible/menu.htm" class="iframe" scrolling="no" frameborder="0" id="menu" width="198px"></iframe>
     </td><td valign="top">
     <iframe src="" class="iframe" frameborder="0" id="sbpages" width="800px" height="1px"></iframe>
     </td></tr></table>
