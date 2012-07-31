@@ -22,19 +22,40 @@ body {
 <!--[if lt IE 9]>
 <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
 <![endif]-->
+<?php
+function fileExists($fileName, $caseSensitive = true) {
+
+    if(file_exists($fileName)) {
+        return $fileName;
+    }
+    if($caseSensitive) return false;
+
+    // Handle case insensitive requests            
+    $directoryName = dirname($fileName);
+    $fileArray = glob($directoryName . '/*', GLOB_NOSORT);
+    $fileNameLowerCase = strtolower($fileName);
+    foreach($fileArray as $file) {
+        if(strtolower($file) == $fileNameLowerCase) {
+            return $file;
+        }
+    }
+    return false;
+}
+
+?>
 <script type="text/javascript">
 function load_page()
 {
 	// get arguments
     var page = "/bible/Douay-Rheims.htm"
-    var book = "<?php echo $_GET["book"];?>";
+    var book = "<?php echo fileExists("./".$_GET["book"].".htm", false);?>";
     var chapter = "<?php echo $_GET["chapter"];?>";
     var verse = "<?php echo $_GET["verse"];?>";
     
 	// Determine book URL
     if( book.length > 0 )
     {
-        page = "/bible/" + book + ".htm";
+        page = "/bible/" + book;
         
         if( chapter.length > 0 )
         {
