@@ -17,6 +17,7 @@ body {
 /*]]>*/
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="http://www.saintbenedicts.com/bible/visibility.js"></script>
 <!--[if lt IE 9]>
 <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
 <![endif]-->
@@ -61,42 +62,10 @@ $(function(){
 
     var iFrames = $('iframe');
 	var interval = 0;
-	var resized = 0;
-  
-    function iResize() {
-    
-        for (var i = 0, j = iFrames.length; i < j; i++) {
-          iFrames[i].style.height = iFrames[i].contentWindow.document.body.offsetHeight + 'px';
-        }
-    }
-	
-	function rectsIntersect(a, b) {
-        return a[0]<b[2] && a[2]>b[0] && a[1]<b[3] && a[3]>b[1];
-    }
-	
-	function getPageRect() {
-        var isquirks= document.compatMode!=='BackCompat';
-        var page= isquirks? document.documentElement : document.body;
-        var x= page.scrollLeft;
-        var y= page.scrollTop;
-        var w= 'innerWidth' in window? window.innerWidth : page.clientWidth;
-        var h= 'innerHeight' in window? window.innerHeight : page.clientHeight;
-        return [x, y, x+w, y+h];
-    }
-
-    function getElementRect(element) {
-        var x= 0, y= 0;
-        var w= element.offsetWidth, h= element.offsetHeight;
-        while (element.offsetParent!==null) {
-            x+= element.offsetLeft;
-            y+= element.offsetTop;
-            element= element.offsetParent;
-        }
-        return [x, y, x+w, y+h];
-    }
-	
+	var resized = 0;	
 	var chapter = 0;
 	var last_chapter = 0;
+    
 	// Scroll to correct chapter
 	function scroll_page() 
 	{
@@ -105,54 +74,34 @@ $(function(){
 		
 		if( last_chapter !== chapter )
 		{
-			moved = 1;
+			anchor_changed = 1;
 		}
 		
 		// Get proper index for getElementsByClassName array
 		var chapterindex = chapter - 1;
 
 		// Scroll to chapter
-		if( chapterindex > 0 )
-		{
-			if( typeof document.getElementById('sbpages').contentWindow.document.getElementsByClassName("chapter")[chapterindex] !== 'undefined' )
-			{
-				//alert("not yet " + resized + " " + wait);
-				
-				if((resized == 1) && (moved == 1))
-				{
-				
-					document.getElementById('sbpages').contentWindow.document.getElementsByClassName("chapter")[chapterindex].scrollIntoView();
-					
-					if( rectsIntersect(getPageRect(), getElementRect(document.getElementById('sbpages').contentWindow.document.getElementsByClassName("chapter")[chapterindex])))
-					{
-						moved = 0;
-					}
-				}
-			}
+		if(( chapterindex > 0 ) &&
+           ( resized == 1 ) && 
+           ( anchor_changed == 1 ) && 
+           (typeof document.getElementById('sbpages').contentWindow.document.getElementsByClassName("chapter")[chapterindex] !== 'undefined' ))
+        {		
+            document.getElementById('sbpages').contentWindow.document.getElementsByClassName("chapter")[chapterindex].scrollIntoView();
+
+            if( isVisible(document.getElementById('sbpages').contentWindow.document.getElementsByClassName("chapter")[chapterindex]) )
+            {
+                anchor_changed = 0;
+            }
 		}
 	}
         
 	interval = setInterval(scroll_page, 100);
-	
-    if ($.browser.safari || $.browser.opera) { 
-    
-       iFrames.load(function(){
-           setTimeout(iResize, 0);
-       });
-    
-       for (var i = 0, j = iFrames.length; i < j; i++) {
-            var iSource = iFrames[i].src;
-            iFrames[i].src = '';
-            iFrames[i].src = iSource;
-       }
-       
-    } else {
-       iFrames.load(function() { 
-           var height = this.contentWindow.document.body.offsetHeight + 50;
-           this.style.height = height + 'px';
-		   resized = 1;
-       });
-    }
+
+    iFrames.load(function() { 
+        var height = this.contentWindow.document.body.offsetHeight + 50;
+        this.style.height = height + 'px';
+        resized = 1;
+    });
 });
 </script>
 </head>
@@ -160,7 +109,7 @@ $(function(){
     <table align="center" width="1000px"><tr><td valign="top">
     <iframe src="" class="iframe" scrolling="no" frameborder="0" id="menu" width="198px"></iframe>
     </td><td valign="top">
-    <iframe src="" class="iframe" scrolling="no" frameborder="0" id="sbpages" width="800px"></iframe>
+    <iframe src="" class="iframe" frameborder="0" id="sbpages" width="800px"></iframe>
     </td></tr></table>
 </body>
 </html>
