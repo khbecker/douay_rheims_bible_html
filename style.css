@@ -3,6 +3,8 @@ body {
   font-family: Arial, sans-serif;
   font-size: medium;
   }
-  div.c1 {text-align: center}
-  .chaptertitle{ font-size: large; font-weight: bold; }
-  .highlighted { background: yellow; }
+:link { color: black }
+:visited { color: black }
+div.c1 {text-align: center}
+.chaptertitle{ font-size: large; font-weight: bold; }
+.highlighted { background: yellow; }
