@@ -109,7 +109,7 @@ $(function(){
     <table align="center" width="1000px"><tr><td valign="top">
     <iframe src="" class="iframe" scrolling="no" frameborder="0" id="menu" width="198px"></iframe>
     </td><td valign="top">
-    <iframe src="" class="iframe" frameborder="0" id="sbpages" width="800px"></iframe>
+    <iframe src="" class="iframe" frameborder="0" id="sbpages" width="800px" height="1px"></iframe>
     </td></tr></table>
 </body>
 </html>
