@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta name="generator" content="HTML Tidy for Linux/x86 (vers 25 March 2009), see www.w3.org" />
-<title>The 1899 Douay-Rheims Catholic Bible</title>
+<title>Catholic Bible - Provided by St. Benedict's Church, Eggertsville, NY</title>
 <meta name="language" content="En" />
 <meta name="classification" content="global" />
 <meta name="keywords" content=
